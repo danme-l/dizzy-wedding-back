@@ -1,0 +1,2 @@
+# Backend for our Wedding Website
+Guests and guest password API made with Node and Express, bootstrapped with [express generator](https://expressjs.com/en/starter/generator.html). Information stored in postgres relational db.
