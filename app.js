@@ -14,19 +14,20 @@ var app = express();
 app.use(cors());
 
 
-// view engine setup
+// jade view engine setup. info:
+// https://github.com/dscape/jade
 // won't actually do anything for the final app but helps us for dev/debug
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // middleware
-app.use(logger('dev'));
-app.use(express.json());
+app.use(logger('dev')); // log requests in dev mode
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser()); 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// define the routes
+// define the routes 
 app.use('/', indexRouter);
 app.use('/guests', guestsRouter);
 app.use('/passwords', passwordsRouter);
