@@ -12,6 +12,8 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+
 router.post('/', async (req, res) => {
   try {
     const rsvps = req.body; // array of RSVP objects

@@ -15,9 +15,10 @@ router.get('/', async (req, res) => {
 });
 
 const pwQuery = 
-`SELECT g.id, first_name, last_name, rsvp_status, plus_one
+`SELECT g.id, first_name, last_name, r.attending, plus_one
 FROM guests g 
 INNER JOIN passwords p ON g.password_id = p.id 
+LEFT JOIN rsvps r ON g.id = r.guest_id
 WHERE p.group_password = $1`
 
 // get all guests with this specific password
