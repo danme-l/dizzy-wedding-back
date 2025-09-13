@@ -14,6 +14,25 @@ router.get('/', async (req, res) => {
   }
 });
 
+// list guests, attendance
+const guestListSQL = `
+SELECT g.id, g.first_name, g.last_name, r.attending, r.food_choice, g.plus_one
+FROM guests g
+LEFT JOIN rsvps r
+ON g.id = r.guest_id
+WHERE g.id < 499
+`
+
+router.get('/list', async (req, res) => {
+  try {
+    const result = await db.query(guestListSQL);
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 router.get('/:id', async (req, res) => {
     const guestId = req.params.id; // get ID from the request URL
     
