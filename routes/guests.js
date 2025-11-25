@@ -21,6 +21,11 @@ FROM guests g
 LEFT JOIN rsvps r
 ON g.id = r.guest_id
 WHERE g.id < 499
+UNION 
+SELECT r.invited_id as id, r.plus_one_name AS first_name, ' ' as last_name, true as attending, r.food_choice, null as plus_one
+FROM RSVPS r
+WHERE r.plus_one_name  IS NOT NULL
+ORDER BY ID
 `
 
 router.get('/list', async (req, res) => {
